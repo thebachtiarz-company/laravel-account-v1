@@ -13,6 +13,11 @@ class UserAccount extends Model implements UserAccountModelInterface
     use UserAccountScopeTrait;
 
     /**
+     * {@inheritDoc}
+     */
+    protected $fillable = self::USER_ACCOUNT_ATTRIBUTES_FILLABLE;
+
+    /**
      * Account code
      *
      * @var string
@@ -26,21 +31,13 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     protected string $data;
 
-    /**
-     * {@inheritDoc}
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-    }
-
     // ? Getter Modules
     /**
      * {@inheritDoc}
      */
     public function getId(): ?int
     {
-        return $this->__get(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_ID);
+        return $this->__get(self::USER_ACCOUNT_ATTRIBUTE_ID);
     }
 
     /**
@@ -48,7 +45,7 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     public function getUserId(): ?int
     {
-        return $this->__get(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_USERID);
+        return $this->__get(self::USER_ACCOUNT_ATTRIBUTE_USERID);
     }
 
     /**
@@ -56,7 +53,7 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     public function getCode(): ?string
     {
-        return $this->__get(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_CODE);
+        return $this->__get(self::USER_ACCOUNT_ATTRIBUTE_CODE);
     }
 
     /**
@@ -64,7 +61,7 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     public function getData(): ?string
     {
-        return $this->__get(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_DATA);
+        return $this->__get(self::USER_ACCOUNT_ATTRIBUTE_DATA);
     }
 
     // ? Setter Modules
@@ -73,7 +70,7 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     public function setId(int $id): self
     {
-        $this->__set(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_ID, $id);
+        $this->__set(self::USER_ACCOUNT_ATTRIBUTE_ID, $id);
 
         return $this;
     }
@@ -83,7 +80,7 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     public function setUserId(int $userId): self
     {
-        $this->__set(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_USERID, $userId);
+        $this->__set(self::USER_ACCOUNT_ATTRIBUTE_USERID, $userId);
 
         return $this;
     }
@@ -93,7 +90,7 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     public function setCode(string $code): self
     {
-        $this->__set(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_CODE, $code);
+        $this->__set(self::USER_ACCOUNT_ATTRIBUTE_CODE, $code);
 
         return $this;
     }
@@ -103,7 +100,7 @@ class UserAccount extends Model implements UserAccountModelInterface
      */
     public function setData(string $data): self
     {
-        $this->__set(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_DATA, $data);
+        $this->__set(self::USER_ACCOUNT_ATTRIBUTE_DATA, $data);
 
         return $this;
     }
@@ -118,7 +115,7 @@ class UserAccount extends Model implements UserAccountModelInterface
     {
         return $this->belongsTo(
             User::class,
-            UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_USERID,
+            self::USER_ACCOUNT_ATTRIBUTE_USERID,
             UserModelInterface::USER_ATTRIBUTE_ID
         );
     }

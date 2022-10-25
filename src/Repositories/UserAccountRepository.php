@@ -3,7 +3,6 @@
 namespace TheBachtiarz\Account\Repositories;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use TheBachtiarz\Account\Interfaces\Model\UserAccountModelInterface;
 use TheBachtiarz\Account\Models\User;
 use TheBachtiarz\Account\Models\UserAccount;
 
@@ -52,7 +51,7 @@ class UserAccountRepository
     {
         $_data = [];
 
-        foreach (UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTES_FILLABLE as $key => $attribute) {
+        foreach ($userAccount->getFillable() as $key => $attribute) {
             $_data[$attribute] = $userAccount->__get($attribute);
         }
 
