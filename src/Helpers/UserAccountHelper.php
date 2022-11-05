@@ -8,7 +8,7 @@ class UserAccountHelper
 {
     use EncryptorHelper;
 
-    // ? Public
+    // ? Public Methods
     /**
      * Encrypt account biodata(s)
      *
@@ -27,7 +27,6 @@ class UserAccountHelper
         }
     }
 
-    // ? Private Methods
     /**
      * Decrypt account biodata(s)
      *
@@ -45,6 +44,22 @@ class UserAccountHelper
             return $_result;
         }
     }
+
+    /**
+     * Resolve encrypted biodata
+     *
+     * @param string $encryptedBiodata
+     * @param boolean $onlyLatest
+     * @return array
+     */
+    public function biodataResolver(string $encryptedBiodata, bool $onlyLatest = false): array
+    {
+        $_biodatas = $this->decryptBiodata($encryptedBiodata);
+
+        return $onlyLatest ? $_biodatas : end($_biodatas);
+    }
+
+    // ? Private Methods
 
     // ? Setter Modules
 }
