@@ -30,13 +30,13 @@ class UserAccountRepository
      * Get account by code
      *
      * @param string $code
-     * @return UserAccount|null
+     * @return UserAccount
      */
-    public function getByCode(string $code): ?UserAccount
+    public function getByCode(string $code): UserAccount
     {
         $_userAccount = UserAccount::getByCode($code)->first();
 
-        // if (!$_userAccount) throw new ModelNotFoundException("Account with code '$code' not found");
+        if (!$_userAccount) throw new ModelNotFoundException("Account with code '$code' not found");
 
         return $_userAccount;
     }

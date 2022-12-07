@@ -3,38 +3,29 @@
 namespace TheBachtiarz\Account\Libraries;
 
 use TheBachtiarz\Account\Interfaces\Library\UrlDomainInterface;
-use TheBachtiarz\Toolkit\Helper\Curl\CurlRestService;
+use TheBachtiarz\Toolkit\Helper\Curl\AbstractCurl;
 
-class CurlService
+class CurlService extends AbstractCurl
 {
-    use CurlRestService;
-
     /**
-     * Base domain resolver
+     * {@override}
      *
-     * @override
-     * @param boolean $productionMode
      * @return string
      */
-    private static function baseDomainResolver(bool $productionMode = true): string
+    protected function urlDomainResolver(): string
     {
-        return $productionMode ? tbaccountconfig('api_url_production') : tbaccountconfig('api_url_sandbox');
+        $_baseDomain = tbaccountconfig('is_production_mode') ? tbaccountconfig('api_url_production') : tbaccountconfig('api_url_sandbox');
+        $_prefix = tbaccountconfig('api_url_prefix');
+        $_endPoint = UrlDomainInterface::URL_DOMAIN_AVAILABLE[$this->getUrl()];
+
+        return "{$_baseDomain}/{$_prefix}/{$_endPoint}";
     }
 
     /**
-     * Url end point resolver
-     *
-     * @override
-     * @return string
+     * {@inheritDoc}
      */
-    private static function urlResolver(): string
+    protected function bodyDataResolver(): array
     {
-        $_baseDomain = self::baseDomainResolver(tbaccountconfig('is_production_mode'));
-
-        $_prefix = tbaccountconfig('api_url_prefix');
-
-        $_endPoint = UrlDomainInterface::URL_DOMAIN_AVAILABLE[self::$url];
-
-        return "{$_baseDomain}/{$_prefix}/{$_endPoint}";
+        return $this->body;
     }
 }

@@ -9,10 +9,28 @@ class AccountDetailService extends CurlService implements LibraryServiceInterfac
     //
 
     /**
+     * Curl Service
+     *
+     * @var CurlService
+     */
+    protected CurlService $curlService;
+
+    /**
+     * Constructor
+     *
+     * @param CurlService $curlService
+     */
+    public function __construct(
+        CurlService $curlService
+    ) {
+        $this->curlService = $curlService;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function execute(array $data): array
     {
-        return self::setUrl(self::URL_DOMAIN_GETACCOUNTDETAIL_NAME)->setData($data)->get();
+        return $this->curlService->setUrl(self::URL_DOMAIN_GETACCOUNTDETAIL_NAME)->setBody($data)->get();
     }
 }

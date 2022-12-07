@@ -9,10 +9,28 @@ class BiodataUpdateService extends CurlService implements LibraryServiceInterfac
     //
 
     /**
+     * Curl Service
+     *
+     * @var CurlService
+     */
+    protected CurlService $curlService;
+
+    /**
+     * Constructor
+     *
+     * @param CurlService $curlService
+     */
+    public function __construct(
+        CurlService $curlService
+    ) {
+        $this->curlService = $curlService;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function execute(array $data): array
     {
-        return self::setUrl(self::URL_DOMAIN_UPDATECURRENTBIODATA_NAME)->setData($data)->post();
+        return $this->curlService->setUrl(self::URL_DOMAIN_UPDATECURRENTBIODATA_NAME)->setBody($data)->post();
     }
 }
