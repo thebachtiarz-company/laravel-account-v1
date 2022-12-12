@@ -3,34 +3,17 @@
 namespace TheBachtiarz\Account\Libraries;
 
 use TheBachtiarz\Account\Interfaces\Library\LibraryServiceInterface;
+use TheBachtiarz\Toolkit\Helper\Curl\Data\CurlResolverData;
 
 class AccountDetailService extends CurlService implements LibraryServiceInterface
 {
     //
 
     /**
-     * Curl Service
-     *
-     * @var CurlService
-     */
-    protected CurlService $curlService;
-
-    /**
-     * Constructor
-     *
-     * @param CurlService $curlService
-     */
-    public function __construct(
-        CurlService $curlService
-    ) {
-        $this->curlService = $curlService;
-    }
-
-    /**
      * {@inheritDoc}
      */
-    public function execute(array $data): array
+    public function execute(array $data): CurlResolverData
     {
-        return $this->curlService->setUrl(self::URL_DOMAIN_GETACCOUNTDETAIL_NAME)->setBody($data)->get();
+        return $this->setUrl(self::URL_DOMAIN_GETACCOUNTDETAIL_NAME)->setBody($data)->get();
     }
 }

@@ -2,13 +2,15 @@
 
 namespace TheBachtiarz\Account\Interfaces\Library;
 
+use TheBachtiarz\Toolkit\Helper\Curl\Data\CurlResolverData;
+
 interface LibraryServiceInterface extends UrlDomainInterface
 {
     /**
      * Execute service process
      *
      * @param array $data
-     * @return array
+     * @return CurlResolverData
      */
-    public function execute(array $data): array;
+    public function execute(array $data): CurlResolverData;
 }

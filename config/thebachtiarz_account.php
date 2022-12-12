@@ -9,7 +9,7 @@ return [
     | API URL Production site.
     |
     */
-    'api_url_production' => "https://accounts.thebachtiarz.com",
+    'api_url_production' => "https://accounts-v1.thebachtiarz.com",
 
     /*
     |--------------------------------------------------------------------------
