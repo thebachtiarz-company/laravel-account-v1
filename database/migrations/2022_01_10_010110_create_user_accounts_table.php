@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class, UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_USERID)->unique()->nullable()->constrained()->nullOnDelete();
-            $table->string(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_CODE)->unique();
+            $table->string(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_CODE);
             $table->text(UserAccountModelInterface::USER_ACCOUNT_ATTRIBUTE_DATA);
             $table->timestamps();
         });

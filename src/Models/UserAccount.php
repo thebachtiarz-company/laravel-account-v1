@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use TheBachtiarz\Account\Interfaces\Model\UserAccountModelInterface;
 use TheBachtiarz\Account\Interfaces\Model\UserModelInterface;
 use TheBachtiarz\Account\Traits\Model\UserAccountScopeTrait;
+use TheBachtiarz\AdditionalAttribute\Services\AdditionalAttributes;
 
 class UserAccount extends Model implements UserAccountModelInterface
 {
+    use AdditionalAttributes;
+
     use UserAccountScopeTrait;
 
     /**
